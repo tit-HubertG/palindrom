@@ -1,0 +1,42 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+bool palindrom (string s)
+{
+    int dl=s.size();
+    for (int i=0;i<dl/2;i++)
+        if(s[i]!=s[dl-i-1]) return false;
+    return true;
+}
+
+string linia;
+int ile;
+
+int main()
+{
+    fstream dane;
+    fstream palindromy;
+
+    dane.open("dane.txt", ios::in);
+    palindromy.open("palindromy.txt", ios::out);
+
+     while(dane.good())
+            {
+                dane>>linia;
+                if(palindrom(linia)!=0)
+                {
+                    palindromy<<linia<<endl;
+                    ile++;
+                }
+            }
+
+    palindromy<<endl<<"liczba palindromow: "<<ile<<endl;
+
+    dane.close();
+    palindromy.close();
+
+    return 0;
+
+}
